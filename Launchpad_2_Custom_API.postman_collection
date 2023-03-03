@@ -1,0 +1,1966 @@
+{
+	"info": {
+		"_postman_id": "a5102829-1dc3-47c9-b148-ea3b4afa97c2",
+		"name": "Launchpad 2 Custom_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19064546"
+	},
+	"item": [
+		{
+			"name": "B2bCart API List",
+			"item": [
+				{
+					"name": "AssociateLogin1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"chetan.bhangale@objectedge.com\",\r\n    \"password\": \"Chetan@ct\",\r\n    \"companyName\": \"the-cycle-hub\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{frontasticUrl}}/frontastic/action/company/associateLogin",
+							"host": [
+								"{{frontasticUrl}}"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"variant\": {\r\n        \"sku\": \"1735121\",\r\n        \"count\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/addToCart",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"addToCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getCart",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getCart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order API List",
+			"item": [
+				{
+					"name": "AssociateLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"chetan.bhangale@objectedge.com\",\r\n    \"password\": \"Chetan@ct\",\r\n    \"companyName\": \"the-cycle-hub\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{frontasticUrl}}/frontastic/action/company/associateLogin",
+							"host": [
+								"{{frontasticUrl}}"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout (Place order using Cart)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/checkout",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrders (orderHistory)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getOrders?limit=1&sort=createdAt%20desc&offset=0",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getOrders"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt%20desc"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrder (getOrderConfirmation)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getOrder?id=607e3a36-12ae-48cf-bb92-1680044ac009",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getOrder"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "607e3a36-12ae-48cf-bb92-1680044ac009"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/updateOrder?id=fe081c7a-db5f-487b-bee3-f1737537b47a",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"updateOrder"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "fe081c7a-db5f-487b-bee3-f1737537b47a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shipping API List",
+			"item": [
+				{
+					"name": "AssociateLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"chetan.bhangale@objectedge.com\",\r\n    \"password\": \"Chetan@ct\",\r\n    \"companyName\": \"the-cycle-hub\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{frontasticUrl}}/frontastic/action/company/associateLogin",
+							"host": [
+								"{{frontasticUrl}}"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getShippingMethods",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getShippingMethods?onlyMatching=true",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getShippingMethods"
+							],
+							"query": [
+								{
+									"key": "onlyMatching",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAvailableShippingMethods",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getAvailableShippingMethods",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getAvailableShippingMethods"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment API List",
+			"item": [
+				{
+					"name": "getPayment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/getPayment?id=5c204aa6-0d17-4e19-8e78-f75bb2c0f868",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"getPayment"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c204aa6-0d17-4e19-8e78-f75bb2c0f868"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addPaymentByInvoice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"amountPlanned\":{\r\n    \"centAmount\":100,\r\n    \"currencyCode\":\"USD\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/addPaymentByInvoice",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"addPaymentByInvoice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPayment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/createPayment",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"createPayment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discount API List",
+			"item": [
+				{
+					"name": "redeemDiscount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\":\"20OFF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/redeemDiscount",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"redeemDiscount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeDiscount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"discountId\": \"103c859b-39de-411c-9db6-afb55e761507\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/b2bCart/removeDiscount",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"b2bCart",
+								"removeDiscount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company API List",
+			"item": [
+				{
+					"name": "associateLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"chetan.bhangale@objectedge.com\",\r\n    \"password\": \"Chetan@ct\",\r\n    \"companyName\": \"the-cycle-hub\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/company/associateLogin",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAssociate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/company/getAssociate",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"getAssociate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listStores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/company/listStores?limit=1&sort=createdAt%20desc&offset=0",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"listStores"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt%20desc"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAddresses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/company/getAddresses",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"getAddresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "associateLogout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/company/associateLogout",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product API List",
+			"item": [
+				{
+					"name": "getProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sku\":\"FuseComp29\",\r\n  \"id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/product/getProduct",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"product",
+								"getProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query(getProducts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/product/query?limit=1&sort=createdAt%20desc&offset=0",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"product",
+								"query"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt%20desc"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "queryCategories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/product/queryCategories?limit=1&cursor=\"offset\"",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"product",
+								"queryCategories"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "cursor",
+									"value": "\"offset\""
+								},
+								{
+									"key": "slug",
+									"value": "\"product slug\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchableAttributes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/product/searchableAttributes",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"product",
+								"searchableAttributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInventories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"skus\": [\r\n        \"TEKTROHDR510100\",\r\n        \"SRAMETAPAXS100\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/product/getInventories",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"product",
+								"getInventories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project API List",
+			"item": [
+				{
+					"name": "getProjectSettings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/project/getProjectSettings",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"project",
+								"getProjectSettings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quote API List",
+			"item": [
+				{
+					"name": "AssociateLogin1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"chetan.bhangale@objectedge.com\",\r\n    \"password\": \"Chetan@ct\",\r\n    \"companyName\": \"the-cycle-hub\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{frontasticUrl}}/frontastic/action/company/associateLogin",
+							"host": [
+								"{{frontasticUrl}}"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"company",
+								"associateLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestQuote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quoteName\": \"Test quotes\",\r\n    \"requestNote\": \"I want 10% discount\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/requestQuote",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"requestQuote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rejectQuote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/rejectQuote?quoteId=b0046aa3-41ef-411c-a6ef-2cfd98c622db",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"rejectQuote"
+							],
+							"query": [
+								{
+									"key": "quoteId",
+									"value": "b0046aa3-41ef-411c-a6ef-2cfd98c622db"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listQuotes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/listQuotes?limit=1&sort=createdAt%20desc&offset=0",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"listQuotes"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt%20desc"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getQuote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/getQuote?id=12e5c6b9-ccb1-49ed-bf72-9e7b2278172e",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"getQuote"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12e5c6b9-ccb1-49ed-bf72-9e7b2278172e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listQuoteRequests",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/listQuoteRequests?limit=1&sort=createdAt%20desc&offset=0",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"listQuoteRequests"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt%20desc"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getQuoteRequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/quote/getQuoteRequest?id=222a8d79-4bb7-41b7-a996-7f6fb3218c3e",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"quote",
+								"getQuoteRequest"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "222a8d79-4bb7-41b7-a996-7f6fb3218c3e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist API  List",
+			"item": [
+				{
+					"name": "getWishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/wishlist/getWishlist",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"wishlist",
+								"getWishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createWishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"New WishList\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/wishlist/createWishlist",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"wishlist",
+								"createWishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToWishlist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"variant\":\"New WishList\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/wishlist/addToWishlist",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"wishlist",
+								"addToWishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateLineItemCount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lineItem\": {\r\n        \"id\": \"ff4c4233-3ba6-4646-8b76-e1e30480aa06\"\r\n    },\r\n    \"count\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/wishlist/updateLineItemCount",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"wishlist",
+								"updateLineItemCount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeLineItem",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+									"if(responseHeaders[\"frontastic-session\"]){\r",
+									"pm.environment.set(\"frontastic-session\", responseHeaders[\"frontastic-session\"]);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "frontastic-session",
+								"value": "{{frontastic-session}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lineItem\": {\r\n        \"id\": \"96e03bd3-d494-499f-b2a0-0d1fe7142344\"\r\n    }\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://poc-objectedge2.frontastic.io/frontastic/action/wishlist/removeLineItem",
+							"protocol": "https",
+							"host": [
+								"poc-objectedge2",
+								"frontastic",
+								"io"
+							],
+							"path": [
+								"frontastic",
+								"action",
+								"wishlist",
+								"removeLineItem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
